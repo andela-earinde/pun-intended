@@ -8,7 +8,13 @@ https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/
 """
 
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pun_int.settings")
+import envvars
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", envvars.get('PUN_SETTINGS_MODULE'))
 
 from django.core.wsgi import get_wsgi_application
+from dj_static import Cling
+from whitenoise.django import DjangoWhiteNoise
+
 application = get_wsgi_application()
+application = Cling(get_wsgi_application())
+application = DjangoWhiteNoise(application) 
