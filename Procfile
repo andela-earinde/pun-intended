@@ -1,1 +1,1 @@
-web: gunicorn trail.wsgi
+web: gunicorn pun_int.wsgi
