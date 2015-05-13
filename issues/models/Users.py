@@ -6,8 +6,8 @@ from django.utils import timezone
 
 
 class UserManager(BaseUserManager):
-     def _create_user(self, username, email, password,
-                     is_staff, is_superuser, **extra_fields):
+    def _create_user(self, username, email, password,
+                 is_staff, is_superuser, **extra_fields):
         """
         Creates and saves a User with the given username, email and password.
         """
@@ -24,12 +24,10 @@ class UserManager(BaseUserManager):
         return user
 
     def create_user(self, username, email=None, password=None, **extra_fields):
-        return self._create_user(username, email, password, False, False,
-                                 **extra_fields)
+        return self._create_user(username, email, password, False, False, **extra_fields)
 
-    def create_superuser(self, username, email=None, password, **extra_fields):
-        return self._create_user(username, email, password, True, True,
-                                 **extra_fields)
+    def create_superuser(self, username, password, **extra_fields):
+        return self._create_user(username, password, True, True, **extra_fields)
 
 class Users(AbstractBaseUser, PermissionsMixin):
     username = models.CharField('username', max_length=30,
@@ -51,9 +49,6 @@ class Users(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
-
-    class Meta:
-        db_table = 'kqlic_users'
 
     def __unicode__(self):
         return self.email
