@@ -73,7 +73,7 @@ DATABASES = {
 }
 
 #overriding django default mode
-AUTH_USER_MODEL = "issues.Users"
+# AUTH_USER_MODEL = "issues.Users"
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
